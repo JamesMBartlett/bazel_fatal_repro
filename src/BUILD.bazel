@@ -1,0 +1,28 @@
+cc_library(
+    name = "cc_library",
+    srcs = glob(
+        [
+            "*.cc",
+        ],
+        exclude = [
+            "**/*_test.cc",
+        ],
+    ),
+)
+
+cc_test(
+    name = "parse_test",
+    srcs = ["parse_test.cc"],
+    deps = [
+        ":cc_library",
+    ],
+    tags = ["requires_bpf"],
+)
+
+cc_test(
+    name = "stitcher_test",
+    srcs = ["stitcher_test.cc"],
+    deps = [
+        ":cc_library",
+    ],
+)
